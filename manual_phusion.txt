@@ -1,0 +1,37 @@
+docker run -it <container name> --add-host=database:<ip>
+  how to get the right IP address?
+  10.133.3.7 for my laptop currently
+apt-get update && apt-get -y dist-upgrade && apt-get -y install postgresql-client
+git clone --branch S14 https://github.com/cbiit/ctrp /local/content/ctrp/apps/ctrp
+cd /local/content/ctrp/apps/ctrp
+sed -i.bak 's/mailfwd.nih.gov/Mailfwd.hub.nih.gov/' config/environments/qa.rb
+
+Added to postgres Dockerfile:
+  echo "ALTER USER docker PASSWORD 'mysecretpassword';" | su postgres -c psql docker         
+
+echo database:5432:docker:docker:mysecretpassword > ~/.pgpass
+chmod 0600 ~/.pgpass
+
+need to ADD ctrp_pentaho (maybe from same dir as Dockerfile?)
+
+psql postgresql://docker:mysecretpassword@database:5432/docker < ctrp_pentaho
+
+sed -i.bak 's/^source/# source/' Gemfile               
+sed -i.bak 's/#source/source/' Gemfile
+
+echo 'gem: --no-document' >> ~/.gemrc
+
+gem install rdoc-generator-fivefish
+gem install pg -v 0.18.2
+npm i -g karma jasmine bower
+export RAILS_ENV="qa"
+  # in Dockerfile ENV RAILS_ENV "qa"
+
+grep -Fv :3000 /local/content/ctrp/apps/ctrp/db/add_users.rb > /local/content/ctrp/apps/ctrp/db/add_users.rb.tmp
+
+/bin/sed s/#url/url/ /local/content/ctrp/apps/ctrp/db/add_users.rb.tmp > /local/content/ctrp/apps/ctrp/db/add_users.rb
+
+bundle install
+
+cd /local/content/ctrp/apps/ctrp/angularjs/ui2
+bower install --allow-root
