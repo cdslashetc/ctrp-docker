@@ -13,10 +13,10 @@ cp ctrp-env.sh.in ctrp-env.sh
 Then customize *ctrp-env.sh* before running startup script(s).
 
 ### Notes
-* use [phusion/passenger-ruby22/](https://hub.docker.com/r/phusion/passenger-ruby22/) as a base image instead of [ubuntu:14.04](https://hub.docker.com/_/ubuntu/)
+* use [phusion/passenger-ruby22](https://hub.docker.com/r/phusion/passenger-ruby22/) as a base image instead of [ubuntu:14.04](https://hub.docker.com/_/ubuntu/)
   * contains functional *init* process
-  * avoids PID 1 zombie problem with memory leaks
-  * contains most of the software prerequisites
+  * avoids PID 1 zombie reaping problem and associated memory leaks
+  * already contains most of the software prerequisites
   * is actively maintained and developed by Phusion, makers of Passenger
   * eliminates unnecessary daemons and system processes
 * make use of environmental variables as much as possible
