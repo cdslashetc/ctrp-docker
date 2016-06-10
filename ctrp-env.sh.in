@@ -1,4 +1,5 @@
 #!/bin/bash
+# RAILS_ENV possible values: development production qa test
 export RAILS_ENV=development
 export GITHUB_TAG=develop
 export POSTGRES_PASSWORD=mysecretpassword

@@ -1,9 +1,8 @@
 #!/bin/bash
-if [ -r ../ctrp-env.sh ]; then
-  . ../ctrp-env.sh
-elif [ -r ./ctrp-env.sh ]; then
-  . ./ctrp-env.sh
+if [ ! -r ctrp-env.sh ]; then
+  cp -f ctrp-env.sh.in ctrp-env.sh
 fi
+. ctrp-env.sh
 if [ -z ${RAILS_ENV+x} ]; then
   export RAILS_ENV=development
   export GITHUB_TAG=develop
